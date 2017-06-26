@@ -26,6 +26,27 @@
     </style>
 </head>
 <body>
+
+<%--登入選單--%>
+<div id="loginDiv">
+    <a href="cache.jsp" onclick="setCookie('username','helloween');">Login</a><br/>
+    <a href="cache.jsp"
+       onclick="setCookie('username','Admin');setCookie('role','admin');">Admin Login</a><br/>
+</div>
+
+<%--會員選單--%>
+<div id="adminDiv" style="display: none;">
+    <a href="cache.jsp">Member Management</a><br/>
+    <a href="cache.jsp">Notice Managerment</a><br/>
+</div>
+
+<%--管理員選單--%>
+<div id="controlDiv" style="display: none;">
+    <a href="cache.jsp">person setting</a><br/>
+    <a href="cache.jsp">change password</a><br/>
+    <a href="cache.jsp" onclick="setCookie('username','');setCookie('role','');">Logout</a><br/>
+</div>
+
 <script type="text/javascript">
 
     /**
@@ -59,39 +80,18 @@
         } else return ""
     }
 
-    if (getCookie("username")) {
+    if (getCookie('username')) {
         //已經登入"隱藏登入選單"
-        document.getElementById("logingDiv").innerText = "歡迎你， " + getCookie('username');
+        document.getElementById("logingDiv").innerText = "Welcome， " + getCookie('username');
         //顯示登入後的操作
         document.getElementById("controlDiv").style.display = "block";
     }
-    if (getCookie("role") == "admin") {
+    if (getCookie('role') == 'admin') {
         //為管理員，顯示管理員操作
         document.getElementById("adminDiv").style.display = "block";
     }
 
 </script>
-
-<%--登入選單--%>
-<div id="loginDiv">
-    <a href="cache.jsp" onclick="setCookie('username','helloween');">登入</a>
-    <a href="cache.jsp"
-       onclick="setCookie('username','Admin');setCookie('role','admin');">登入為管理員</a>
-</div>
-
-<%--會員選單--%>
-<div id="adminDiv" style="display: none;">
-    <a href="cache.jsp">會員管理</a>
-    <a href="cache.jsp">公告管理</a>
-</div>
-
-<%--管理員選單--%>
-<div id="controlDiv" style="display: none;">
-    <a href="cache.jsp">個人設定</a>
-    <a href="cache.jsp">修改密碼</a>
-    <a href="cache.jsp" onclick="setCookie('username','');setCookie('role','');">退出</a>
-</div>
-
 
 </body>
 </html>
