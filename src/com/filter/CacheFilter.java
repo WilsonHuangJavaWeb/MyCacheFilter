@@ -61,7 +61,7 @@ public class CacheFilter implements Filter {
         uri = request.getQueryString() == null ? uri : (uri + "?" + request.getQueryString());
 
         //對應的快取檔案
-        File cacheFile = new File(temporalDir, URLEncoder.encode(uri, "utf-8"));
+        File cacheFile = new File(temporalDir, URLEncoder.encode(uri, "UTF-8"));
         System.out.println(cacheFile);
 
         // 如果快取記憶體檔案不存在，或已經超出快取記憶體時間，則請求 Servlet
@@ -79,7 +79,7 @@ public class CacheFilter implements Filter {
             cacheFile.createNewFile();  //建立新的快取檔案
 
             //輸出到快取檔案中
-            Writer writer = new OutputStreamWriter(new FileOutputStream(cacheFile), "utf-8");
+            Writer writer = new OutputStreamWriter(new FileOutputStream(cacheFile), "UTF-8");
             writer.write(content);
             writer.close();
         }
@@ -89,7 +89,7 @@ public class CacheFilter implements Filter {
         response.setContentType(mimeType);
 
         //讀取快取檔案的內容，寫入用戶端瀏覽器
-        Reader reader = new InputStreamReader(new FileInputStream(cacheFile), "utf-8");
+        Reader reader = new InputStreamReader(new FileInputStream(cacheFile), "UTF-8");
         StringBuffer stringBuffer = new StringBuffer();
         char[] cacheBuffer = new char[1024];
         int length;
